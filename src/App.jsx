@@ -1,15 +1,37 @@
+import { useState } from "react"
 import Time from "./Time.jsx"
+import "./index.css"
+import events from "./events.json"
 const App = () => {
+  const [data, setData] = useState(events);
+  const [year, setYear] = useState(0);
+  const [event, setEvent] = useState("");
+  const changeYearState = (year) => {
+    setYear(year.target.value);
+  };
+  const changeEventState = (event) => {
+    setEvent(event.target.value);
+  };
+
+  const addItems = () => {
+    let newObject = {}
+    newObject.year = year;
+    newObject.event = event;
+    //  console.log(newObject)
+    setData([...data, newObject])
+  }
+
   return (
-    <div>
-      <h1>Time-Line</h1>
-      <br />
-      <Time year ={2003} event ="I was born"/>
-      <Time year ={2007} event ="In 2007, I had fallen and a stone had enter my chin, due to which I had to be beaten a lot by my mother."/>
-      <Time year ={2011} event ="In 2011, I fell off my bicycle and have never ridden a bicycle since."/>
-      <Time year ={2014} event ="My aunt died in 2014.I cried a lot at that time"/>
-      <Time year ={2018} event ="In 2018, I went to the Games for the first time and at that time I was very proud."/>
-      <Time year ={2020} event ="In 2020, when I went to Dharamshala for the Games and ran on the synthetic track there.  That was too barefoot and because of that I got blisters on my feet."/>
+    <div >
+      <h1 className="heading">Time-line</h1>
+      <div className="container">
+      {data.map(event => {
+        return (<Time year={event.year} event={event.event} />)
+      })}
+      <input type="number" name="year" value={year} onChange={changeYearState} />
+      <input type="text" name="event" value={event} onChange={changeEventState} />
+      <button onClick={addItems}>Submit</button>
+      </div>
     </div>
   )
 }

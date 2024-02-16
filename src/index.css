@@ -1,0 +1,14 @@
+body{
+    background-color: antiquewhite;
+}
+.container{
+    text-align: center;
+    background-color: rgb(249, 236, 219);
+}
+.heading{
+    text-align: center;
+    color: brown;
+    font-size: 3.9em;
+    border: 1px solid black;
+    background-color: beige;
+}
